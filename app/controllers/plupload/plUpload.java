@@ -19,7 +19,7 @@ import play.mvc.Http.Response;
 
 public class Plupload extends Controller {
 
-    static String targetDir = "../uploads/";
+    static String targetDir = Play.configuration.getProperty("plupload.uploadDirectory", "../uploads/");
 
     public static void index() {
         render();

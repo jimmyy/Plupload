@@ -12,4 +12,8 @@ You can launch the controller plupload.Plupload with the function index.
 
 For example, in a simple local project :
 
-bcc. http://localhost:9000/plupload.Plupload/index
+bcc.. http://localhost:9000/plupload.Plupload/index
+
+_Optional_ : You can configure the upload directory. Add in your application.conf :
+
+bcc.. plupload.uploadDirectory=your_upload_directory
