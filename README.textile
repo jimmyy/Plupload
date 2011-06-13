@@ -8,4 +8,8 @@ bc.. module.plupload=${play.path}/modules/plupload
 
 h2. usage
 
-plupload.
+You can launch the controller plupload.Plupload with the function index. 
+
+For example, in a simple local project :
+
+bcc. http://localhost:9000/plupload.Plupload/index
