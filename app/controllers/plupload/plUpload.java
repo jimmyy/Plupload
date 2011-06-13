@@ -17,7 +17,7 @@ import play.*;
 import play.mvc.*;
 import play.mvc.Http.Response;
 
-public class plUpload extends Controller {
+public class Plupload extends Controller {
 
     static String targetDir = "../uploads/";
 
