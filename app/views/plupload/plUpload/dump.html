@@ -1,0 +1,12 @@
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Value</th>
+    </tr>
+    #{list items:map, as:'m'}
+    <tr>
+        <td>${m.key}</td>
+        <td>${m.value}</td>
+    </tr>
+    #{/list}
+</table>

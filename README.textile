@@ -1,0 +1,7 @@
+h1. Playframework plUpload module
+
+h2. Installation
+
+Add to your application.conf :
+
+bc.. module.plupload=${play.path}/modules/plupload

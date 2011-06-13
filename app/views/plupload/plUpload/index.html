@@ -1,0 +1,74 @@
+#{extends 'main.html' /}
+#{set 'moreScripts'}
+
+<!-- Load Queue widget CSS and jQuery -->
+<style type="text/css">@import url(/public/javascripts/plUpload/jquery.plupload.queue/css/jquery.plupload.queue.css);</style>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("jquery", "1.3");
+</script>
+
+<!-- Load plupload and all it's runtimes and finally the jQuery queue widget -->
+<script type="text/javascript" src="/public/javascripts/plUpload/plupload.js"></script>
+<script type="text/javascript" src="/public/javascripts/plUpload/plupload.html5.js"></script>
+<script type="text/javascript" src="/public/javascripts/plUpload/jquery.plupload.queue/jquery.plupload.queue.js"></script>
+
+<script type="text/javascript">
+    // Convert divs to queue widgets when the DOM is ready
+    $(function() {
+        $("#uploader").pluploadQueue({
+            // General settings
+            runtimes : 'html5',
+            url : 'upload',
+            max_file_size : '10mb',
+            chunk_size : '1mb',
+            unique_names : true,
+
+            // Resize images on clientside if we can
+            resize : {width : 320, height : 240, quality : 90},
+
+            // Specify what files to browse for
+            filters : [
+                {title : "Image files", extensions : "jpg,gif,png"},
+                {title : "Zip files", extensions : "zip"}
+            ],
+
+            // Flash settings
+            flash_swf_url : '/plupload/js/plupload.flash.swf',
+
+            // Silverlight settings
+            silverlight_xap_url : '/plupload/js/plupload.silverlight.xap'
+        });
+
+        // Client side form validation
+        $('form').submit(function(e) {
+            var uploader = $('#uploader').pluploadQueue();
+
+            // Validate number of uploaded files
+            if (uploader.total.uploaded == 0) {
+                // Files in queue upload them first
+                if (uploader.files.length > 0) {
+                    // When all files are uploaded submit form
+                    uploader.bind('UploadProgress', function() {
+                        if (uploader.total.uploaded == uploader.files.length)
+                            $('form').submit();
+                    });
+
+                    uploader.start();
+                } else
+                    alert('You must at least upload one file.');
+
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+#{/set}
+
+
+
+<form method="post" action="dump.php">
+    <div id="uploader">
+        <p>You browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.</p>
+    </div>
+</form>

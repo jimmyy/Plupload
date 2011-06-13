@@ -1,0 +1,4 @@
+self: play -> plupload 0.1
+
+require:
+    - play
