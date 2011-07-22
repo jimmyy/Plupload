@@ -1,4 +1,4 @@
-self: play -> plupload 0.1
+self: play -> plupload 1.0
 
 require:
     - play
